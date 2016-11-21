@@ -1,0 +1,2 @@
+D:\Dropbox\EI\3Ano\IS\SmartH2O\SmartH2O_Alarm\bin\Debug\SmartH2O_Alarm.exe.config
+D:\Dropbox\EI\3Ano\IS\SHARED_SI\smartH2O\SmartH2O_Alarm\bin\Debug\SmartH2O_Alarm.exe.config
