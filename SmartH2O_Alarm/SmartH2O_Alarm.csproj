@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2C38B1F4-85A9-476F-B11E-85F4E9D084C6}</ProjectGuid>
+    <ProjectGuid>{BEA2F324-739A-4A81-97E4-5168188880CE}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SmartH2O_Alarm</RootNamespace>
