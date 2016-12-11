@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BBF40841-FFD0-44AF-A254-101BC5251A1B}</ProjectGuid>
+    <ProjectGuid>{1E8B7013-F59E-4995-A96F-2C3B008E4DB7}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SmartH2O_DU</RootNamespace>
-    <AssemblyName>SmartH2O_DU</AssemblyName>
+    <RootNamespace>SmartH2O_DLog</RootNamespace>
+    <AssemblyName>SmartH2O-DLog</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -36,9 +36,6 @@
     <Reference Include="M2Mqtt.Net, Version=4.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\M2Mqtt.4.3.0.0\lib\net45\M2Mqtt.Net.dll</HintPath>
       <Private>True</Private>
-    </Reference>
-    <Reference Include="SensorNodeDll">
-      <HintPath>..\..\..\..\..\Downloads\SensorNodeDll.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
