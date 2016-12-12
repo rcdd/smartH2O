@@ -13,6 +13,7 @@ namespace SmartH2O_DLog
 {
     class Program
     {
+       
         //private static XmlDocument doc = new XmlDocument();
         static void Main(string[] args)
         {
@@ -39,11 +40,11 @@ namespace SmartH2O_DLog
         private static void client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
         {
 
-            //Console.WriteLine("Received = " + Encoding.UTF8.GetString(e.Message) + " on topic " + e.Topic);
+            string XmlPath = Path.GetDirectoryName(Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory())) + "\\App_Data\\log-sensors.xml";
             String strTemp = Encoding.UTF8.GetString(e.Message);
             XElement t = XElement.Parse(strTemp);
 
-            Console.Write("Received msg: "/*+ strTemp*/);
+            Console.Write("Received msg: ");
             Console.WriteLine(t.Element("Name").Value);
             Console.WriteLine(t.Element("Value").Value);
             Console.WriteLine(t.Element("ID").Value);
@@ -52,69 +53,46 @@ namespace SmartH2O_DLog
 
             XmlDocument doc = new XmlDocument();
             
-
-            if(!File.Exists(@"C:\\Users\\rpbeat\\Desktop\\EngenhariaInformatica_3ano\\document.xml"))
+            if(!File.Exists(XmlPath))
             {
-                XmlDocument xmlDoc = new XmlDocument();
-                XmlNode rootNode = xmlDoc.CreateElement("Sensores");
-                xmlDoc.AppendChild(rootNode);
-
-                XmlElement sensor = xmlDoc.CreateElement("Sensor");
-                rootNode.AppendChild(sensor);
-
-                XmlNode nameNode = xmlDoc.CreateElement("Name");
-                nameNode.InnerText = t.Element("Name").Value;
-                sensor.AppendChild(nameNode);
-
-                XmlNode valueNode = xmlDoc.CreateElement("Value");
-                valueNode.InnerText = t.Element("Name").Value;
-                sensor.AppendChild(valueNode);
-
-                XmlNode idNode = xmlDoc.CreateElement("ID");
-                valueNode.InnerText = t.Element("ID").Value;
-                sensor.AppendChild(valueNode);
-
-                XmlNode dateNode = xmlDoc.CreateElement("Date");
-                dateNode.InnerText = t.Element("Date").Value;
-                sensor.AppendChild(dateNode);
-
-                XmlNode timeNode = xmlDoc.CreateElement("Time");
-                timeNode.InnerText = t.Element("Time").Value;
-                sensor.AppendChild(timeNode);
-
-                xmlDoc.Save(@"C:\\Users\\rpbeat\\Desktop\\EngenhariaInformatica_3ano\\document.xml");
+                XmlNode rootNode = doc.CreateElement("Sensors");
+                doc.AppendChild(rootNode);
+                writeOnLogFile(doc,rootNode,XmlPath, t);
             }else
             {
-                doc.Load(@"C:\\Users\\rpbeat\\Desktop\\EngenhariaInformatica_3ano\\document.xml");
-
+                doc.Load(XmlPath);
                 XmlNode root = doc.DocumentElement;
-                XmlNode myNode = root.SelectSingleNode("/Sensores");
-
-                XmlElement sensor = doc.CreateElement("Sensor");
-                myNode.AppendChild(sensor);
-
-                XmlNode nameNode = doc.CreateElement("Name");
-                nameNode.InnerText = t.Element("Name").Value;
-                sensor.AppendChild(nameNode);
-
-                XmlNode valueNode = doc.CreateElement("Value");
-                valueNode.InnerText = t.Element("Name").Value;
-                sensor.AppendChild(valueNode);
-
-                XmlNode idNode = doc.CreateElement("ID");
-                valueNode.InnerText = t.Element("ID").Value;
-                sensor.AppendChild(valueNode);
-
-                XmlNode dateNode = doc.CreateElement("Date");
-                dateNode.InnerText = t.Element("Date").Value;
-                sensor.AppendChild(dateNode);
-
-                XmlNode timeNode = doc.CreateElement("Time");
-                timeNode.InnerText = t.Element("Time").Value;
-                sensor.AppendChild(timeNode);
-
-                doc.Save("C:\\Users\\rpbeat\\Desktop\\EngenhariaInformatica_3ano\\document.xml");
+                XmlNode myNode = root.SelectSingleNode("/Sensors");
+                writeOnLogFile(doc, myNode, XmlPath, t);
             }
+        }
+
+        private static void writeOnLogFile(XmlDocument xmlDoc, XmlNode rootNode, string xmlPath, XElement t)
+        {
+            XmlElement sensor = xmlDoc.CreateElement("Sensor");
+            rootNode.AppendChild(sensor);
+
+            XmlNode nameNode = xmlDoc.CreateElement("Name");
+            nameNode.InnerText = t.Element("Name").Value;
+            sensor.AppendChild(nameNode);
+
+            XmlNode valueNode = xmlDoc.CreateElement("Value");
+            valueNode.InnerText = t.Element("Name").Value;
+            sensor.AppendChild(valueNode);
+
+            XmlNode idNode = xmlDoc.CreateElement("ID");
+            valueNode.InnerText = t.Element("ID").Value;
+            sensor.AppendChild(valueNode);
+
+            XmlNode dateNode = xmlDoc.CreateElement("Date");
+            dateNode.InnerText = t.Element("Date").Value;
+            sensor.AppendChild(dateNode);
+
+            XmlNode timeNode = xmlDoc.CreateElement("Time");
+            timeNode.InnerText = t.Element("Time").Value;
+            sensor.AppendChild(timeNode);
+
+            xmlDoc.Save(xmlPath);
         }
     }
 }
