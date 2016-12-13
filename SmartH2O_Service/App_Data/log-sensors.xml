@@ -1,0 +1,14 @@
+<Sensors>
+  <Sensor>
+    <Name>PH</Name>
+    <Value>1</Value>
+    <Date>12/12/2016</Date>
+    <Time>17:52:56</Time>
+  </Sensor>
+  <Sensor>
+    <Name>NH3</Name>
+    <Value>2</Value>
+    <Date>12/12/2016</Date>
+    <Time>17:53:02</Time>
+  </Sensor>
+</Sensors>
