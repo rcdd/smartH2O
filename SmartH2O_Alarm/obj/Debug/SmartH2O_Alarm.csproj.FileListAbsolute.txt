@@ -1,1 +1,9 @@
 D:\Dropbox\EI\3Ano\IS\SHARED_SI\SmartH2O\SmartH2O_Alarm\bin\Debug\SmartH2O_Alarm.exe.config
+D:\Dropbox\EI\3Ano\IS\SHARED_SI\smartH2O\SmartH2O_Alarm\obj\Debug\SmartH2O_Alarm.exe
+D:\Dropbox\EI\3Ano\IS\SHARED_SI\smartH2O\SmartH2O_Alarm\obj\Debug\SmartH2O_Alarm.pdb
+D:\Dropbox\EI\3Ano\IS\SHARED_SI\smartH2O\SmartH2O_Alarm\bin\Debug\SmartH2O_Alarm.exe
+D:\Dropbox\EI\3Ano\IS\SHARED_SI\smartH2O\SmartH2O_Alarm\bin\Debug\SmartH2O_Alarm.pdb
+D:\Dropbox\EI\3Ano\IS\SHARED_SI\smartH2O\SmartH2O_Alarm\obj\Debug\SmartH2O_Alarm.csprojResolveAssemblyReference.cache
+D:\Dropbox\EI\3Ano\IS\SHARED_SI\smartH2O\SmartH2O_Alarm\obj\Debug\SmartH2O_Alarm.SmartH20_Alarm.resources
+D:\Dropbox\EI\3Ano\IS\SHARED_SI\smartH2O\SmartH2O_Alarm\obj\Debug\SmartH2O_Alarm.Properties.Resources.resources
+D:\Dropbox\EI\3Ano\IS\SHARED_SI\smartH2O\SmartH2O_Alarm\obj\Debug\SmartH2O_Alarm.csproj.GenerateResource.Cache

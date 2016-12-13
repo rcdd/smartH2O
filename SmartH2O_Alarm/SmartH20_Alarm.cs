@@ -11,16 +11,24 @@ using System.Xml;
 using System.Web;
 using System.IO;
 using System.Runtime.Serialization;
+using System.Xml.Schema;
+using System.Threading;
+using System.Globalization;
 
 namespace SmartH2O_Alarm
 {
     public partial class SmartH20_Alarm : Form
     {
-        string XmlPath = Path.GetDirectoryName(Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory())) + "\\App_Data\\trigger-rules.xml";
+
+        string xmlPath = Path.GetDirectoryName(Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory())) + "\\App_Data\\trigger-rules.xml";
+        string xsdPath = Path.GetDirectoryName(Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory())) + "\\App_Data\\trigger-rules.xsd";
         LinkedList<Sensor> sensorList = new LinkedList<Sensor>();
+        static bool xmlValid = true;
+        static string strXmlErrorReason;
 
         public SmartH20_Alarm()
         {
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
             InitializeComponent();
             readXmlRules();
 
@@ -57,17 +65,51 @@ namespace SmartH2O_Alarm
 
         private void readXmlRules()
         {
-            if (!File.Exists(XmlPath))
+            if (!File.Exists(xmlPath))
             {
                 MessageBox.Show("No config file found - Created a template file!");
                 createXmlTemplate();
             }
 
-            // TODO!!!! ---- VALIDATION
-
-
             XmlDocument doc = new XmlDocument();
-            doc.Load(XmlPath);
+            try
+            {
+                doc.Load(xmlPath);
+                //VALIDATION
+                doc.Schemas.Add(null, xsdPath);
+                ValidationEventHandler eventHandler = new ValidationEventHandler(validateXML);
+                doc.Validate(eventHandler);
+                if (xmlValid)
+                {
+                    Console.Write("XML Status: OK!");
+                }
+                else
+                {
+                    throw new XmlException(strXmlErrorReason.ToString());
+                }
+            }
+            catch (XmlException ex)
+            {
+                DialogResult ans = MessageBox.Show("Invalid XML File! Error: " + ex.Message + "\n\nDo want continue with new template XML file?", "ERROR - XML Status", MessageBoxButtons.YesNo);
+                if (ans == DialogResult.Yes)
+                {
+                    ans = MessageBox.Show("You will lost your old configurations, are you sure?", "ATENTION: ALL DATA WILL BE LOST!", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+                    if (ans == DialogResult.Yes)
+                    {
+                        //delete incorrect template file
+                        File.Delete(xmlPath);
+                        xmlValid = true;
+                        readXmlRules();
+                        return;
+                    }
+                }
+                Environment.Exit(1);
+            }
+
+
+           
+
+            
 
 
             foreach (XmlNode node in doc.DocumentElement.ChildNodes)
@@ -107,6 +149,12 @@ namespace SmartH2O_Alarm
             }
         }
 
+        private static void validateXML(Object sender, ValidationEventArgs args)
+        {
+            xmlValid = false;
+            strXmlErrorReason = args.Message;
+        }
+
         private void comboBoxSensors_SelectedIndexChanged(object sender, EventArgs e)
         {
             Sensor sensor = sensorList.ElementAt(comboBoxSensors.SelectedIndex);
@@ -137,15 +185,15 @@ namespace SmartH2O_Alarm
 
                         if (checkBoxActivate.Checked) sensor.status = 1; else sensor.status = 0;
 
-                        sensor.btMax = float.Parse(textBoxBTMax.Text);
-                        sensor.btMin = float.Parse(textBoxBTMin.Text);
+                        sensor.btMax = float.Parse(textBoxBTMax.Text.Replace(",", "."));
+                        sensor.btMin = float.Parse(textBoxBTMin.Text.Replace(",", "."));
 
                         if (checkBoxBT.Checked) sensor.btStatus = 1; else sensor.btStatus = 0;
-                        sensor.eqVal = float.Parse(textBoxValueEQ.Text);
+                        sensor.eqVal = float.Parse(textBoxValueEQ.Text.Replace(",", "."));
                         if (checkBoxEq.Checked) sensor.eqStatus = 1; else sensor.eqStatus = 0;
-                        sensor.grVal = float.Parse(textBoxValueGR.Text);
+                        sensor.grVal = float.Parse(textBoxValueGR.Text.Replace(",","."));
                         if (checkBoxGr.Checked) sensor.grStatus = 1; else sensor.grStatus = 0;
-                        sensor.lsVal = float.Parse(textBoxValueLS.Text);
+                        sensor.lsVal = float.Parse(textBoxValueLS.Text.Replace(",", "."));
                         if (checkBoxLs.Checked) sensor.lsStatus = 1; else sensor.lsStatus = 0;
 
                         comboBoxSensors.Refresh();
@@ -266,13 +314,13 @@ namespace SmartH2O_Alarm
                 status.InnerText = "0";
             }
 
-            doc.Save(XmlPath);
+            doc.Save(xmlPath);
         }
 
         private void updateXML(Sensor sensor)
         {
             XmlDocument doc = new XmlDocument();
-            doc.Load(XmlPath);
+            doc.Load(xmlPath);
 
             XmlNode node = doc.DocumentElement;
             string path = "/SmartH2O/sensor[@name = '" + sensor.name + "']/";
@@ -288,7 +336,7 @@ namespace SmartH2O_Alarm
             node.SelectSingleNode(path + "triggers/between/status").InnerText = sensor.btStatus.ToString();
             node.SelectSingleNode(path + "status").InnerText = sensor.status.ToString();
 
-            doc.Save(XmlPath);
+            doc.Save(xmlPath);
         }
 
         private void checkBoxActivate_CheckedChanged(object sender, EventArgs e)
