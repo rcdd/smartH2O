@@ -16,7 +16,7 @@ namespace SmartH2O_Alarm
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new SmartH20_Alarm());
         }
     }
 }
