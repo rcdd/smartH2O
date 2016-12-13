@@ -63,6 +63,9 @@ namespace SmartH2O_Alarm
                 createXmlTemplate();
             }
 
+            // TODO!!!! ---- VALIDATION
+
+
             XmlDocument doc = new XmlDocument();
             doc.Load(XmlPath);
 
