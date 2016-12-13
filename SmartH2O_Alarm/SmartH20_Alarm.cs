@@ -48,7 +48,7 @@ namespace SmartH2O_Alarm
             //populate listView
             foreach (Sensor sensor in sensorList)
             {
-                comboBoxSensors.Items.Add(sensor.name);
+                listBoxSensors.Items.Add(sensor.name);
             }
 
             if (!checkBoxActivate.Checked) groupBox1.Enabled = false; else groupBox1.Enabled = true;
@@ -106,12 +106,6 @@ namespace SmartH2O_Alarm
                 Environment.Exit(1);
             }
 
-
-           
-
-            
-
-
             foreach (XmlNode node in doc.DocumentElement.ChildNodes)
             {
                 string name = node.Attributes["name"]?.InnerText;
@@ -145,7 +139,6 @@ namespace SmartH2O_Alarm
                 sensor.status = int.Parse(node.SelectSingleNode(path + "status").InnerText.ToString());
 
                 sensorList.AddLast(sensor);
-                
             }
         }
 
@@ -157,9 +150,11 @@ namespace SmartH2O_Alarm
 
         private void comboBoxSensors_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Sensor sensor = sensorList.ElementAt(comboBoxSensors.SelectedIndex);
+            Sensor sensor = sensorList.ElementAt(listBoxSensors.SelectedIndex);
 
             //populate fields
+            checkBoxActivate.Enabled = true;
+            labelSensorName.Text = sensor.name;
             if (sensor.status == 1) checkBoxActivate.Checked = true; else checkBoxActivate.Checked = false;
 
             if (sensor.eqStatus == 1) checkBoxEq.Checked = true; else checkBoxEq.Checked = false;
@@ -177,11 +172,11 @@ namespace SmartH2O_Alarm
         {
             try
             {
-                if (comboBoxSensors.SelectedIndex != -1)
+                if (listBoxSensors.SelectedIndex != -1)
                 {
                     if (checkForm())
                     {
-                        Sensor sensor = sensorList.ElementAt(comboBoxSensors.SelectedIndex);
+                        Sensor sensor = sensorList.ElementAt(listBoxSensors.SelectedIndex);
 
                         if (checkBoxActivate.Checked) sensor.status = 1; else sensor.status = 0;
 
@@ -196,9 +191,10 @@ namespace SmartH2O_Alarm
                         sensor.lsVal = float.Parse(textBoxValueLS.Text.Replace(",", "."));
                         if (checkBoxLs.Checked) sensor.lsStatus = 1; else sensor.lsStatus = 0;
 
-                        comboBoxSensors.Refresh();
+                        listBoxSensors.Refresh();
                         updateXML(sensor);
-                        MessageBox.Show("Data saved of sensor " + sensor.name + "!");
+
+                        ShowMessage("Data saved of sensor " + sensor.name + "!");
                     }
                     
                 }
@@ -216,6 +212,20 @@ namespace SmartH2O_Alarm
             {
                 MessageBox.Show("Some field is empty or incorrect");
             }
+        }
+
+        private void ShowMessage(string text)
+        {
+            var t = new System.Windows.Forms.Timer();
+            t.Interval = 3000; // it will Tick in 3 seconds
+            labelMessage.Text = (text);
+            labelMessage.Show();
+            t.Tick += (s, ez) =>
+            {
+                labelMessage.Hide();
+                t.Stop();
+            };
+            t.Start();
         }
 
         private bool checkForm()
