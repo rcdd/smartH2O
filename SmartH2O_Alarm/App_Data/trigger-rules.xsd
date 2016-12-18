@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    
+  <xs:element name="SmartH2O" type="SmartH2OType"/>
+  
+  <xs:complexType name="equalType">
+    <xs:sequence>
+      <xs:element type="xs:float" name="value"/>
+      <xs:element type="statusFormatType" name="status" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="greaterType">
+    <xs:sequence>
+      <xs:element type="xs:float" name="value"/>
+      <xs:element type="statusFormatType" name="status" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="lessType">
+    <xs:sequence>
+      <xs:element type="xs:float" name="value"/>
+      <xs:element type="statusFormatType" name="status" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="betweenType">
+    <xs:sequence>
+      <xs:element type="xs:float" name="valueMax"/>
+      <xs:element type="xs:float" name="valueMin"/>
+      <xs:element type="statusFormatType" name="status" />
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="triggersType">
+    <xs:sequence>
+      <xs:element type="equalType" name="equal"/>
+      <xs:element type="greaterType" name="greater"/>
+      <xs:element type="lessType" name="less"/>
+      <xs:element type="betweenType" name="between"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="sensorType">
+    <xs:sequence>
+      <xs:element type="triggersType" name="triggers"/>
+      <xs:element type="statusFormatType" name="status" />
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="name" use="required"/>
+  </xs:complexType>
+  
+  <xs:complexType name="SmartH2OType">
+    <xs:sequence>
+      <xs:element type="sensorType" name="sensor" maxOccurs="unbounded" minOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="statusFormatType">
+    <xs:restriction base="xs:int">
+      <xs:enumeration value="0" />
+      <xs:enumeration value="1" />
+    </xs:restriction>
+  </xs:simpleType>
+  
+</xs:schema>
+

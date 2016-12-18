@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Sensor.cs" />
     <Compile Include="SmartH20_Alarm.cs">
       <SubType>Form</SubType>
     </Compile>
