@@ -49,8 +49,8 @@ namespace SmartH2O_DU
 
         private static void publish(string v)
         {
-            MqttClient client = new MqttClient("127.0.0.1");
-            client.Connect(Guid.NewGuid().ToString());
+            MqttClient client = new MqttClient("host.dynip.sapo.pt", 21,false, null, null, MqttSslProtocols.None);
+            client.Connect(Guid.NewGuid().ToString(), "isuser", "is2016");
             if (client.IsConnected)
             {
                 client.Publish("SensorValues", Encoding.UTF8.GetBytes(v));

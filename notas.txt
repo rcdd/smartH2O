@@ -1,0 +1,7 @@
+Mosquitto
+MqttClient client = new MqttClient("host.dynip.sapo.pt", 21, false, null, null, MqttSslProtocols.None);
+client.Connect(Guid.NewGuid().ToString(), "isuser", "is2016");
+
+
+AppHarbor
+http://servicesmarth2o.apphb.com/ServiceLog.svc

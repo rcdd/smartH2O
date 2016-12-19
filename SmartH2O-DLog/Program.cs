@@ -23,8 +23,8 @@ namespace SmartH2O_DLog
         //private static XmlDocument doc = new XmlDocument();
         static void Main(string[] args)
         {
-            MqttClient client = new MqttClient("127.0.0.1");
-            client.Connect(Guid.NewGuid().ToString());
+            MqttClient client = new MqttClient("host.dynip.sapo.pt", 21, false, null, null, MqttSslProtocols.None);
+            client.Connect(Guid.NewGuid().ToString(), "isuser", "is2016");
             if (client.IsConnected)
             {
                 //Subscribe

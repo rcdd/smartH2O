@@ -14,6 +14,8 @@ using System.Runtime.Serialization;
 using System.Xml.Schema;
 using System.Threading;
 using System.Globalization;
+using uPLibrary.Networking.M2Mqtt;
+using uPLibrary.Networking.M2Mqtt.Messages;
 
 namespace SmartH2O_Alarm
 {
@@ -31,6 +33,25 @@ namespace SmartH2O_Alarm
             Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
             InitializeComponent();
             readXmlRules();
+
+            //connect to mosquito
+            MqttClient client = new MqttClient("127.0.0.1");
+            client.Connect(Guid.NewGuid().ToString());
+            if (client.IsConnected)
+            {
+                //Subscribe
+                string[] m_strTopicsInfo = new string[1];
+                m_strTopicsInfo[0] = "SensorValues";
+                client.readSensors += readSensors;
+                byte[] qosLevels = { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE };
+                client.Subscribe(m_strTopicsInfo, qosLevels);
+            }
+            else
+            {
+                Console.Write("Error connecting to message broker...");
+                return;
+            }
+
 
 
             /*foreach (Sensor sen in sensorList)
@@ -62,6 +83,30 @@ namespace SmartH2O_Alarm
             if (!checkBoxBT.Checked) groupBox5.Enabled = false; else groupBox5.Enabled = true;
 
     }
+
+        private static void readSensors(object sender, MqttMsgPublishEventArgs e)
+        {
+            //Console.WriteLine("Received = " + Encoding.UTF8.GetString(e.Message) + " on topic " + e.Topic);            
+            //EXTRACT FIELDS
+            String strTemp = Encoding.UTF8.GetString(e.Message);
+            //string[] arrParts = strTemp.Split(new string[] {"|"}, StringSplitOptions.RemoveEmptyEntries);
+            string[] arrParts = ExtractFieldsFromXml(strTemp);
+
+            //RECOVER AVATAR IMG
+            Bitmap btmAvatar = ImageHandler.Base64StringToImage(arrParts[2]);
+
+            //PACK INFO
+            string[] arr = new string[4];
+            ListViewItem itm;
+            arr[0] = arrParts[2]; //avatar
+            arr[1] = arrParts[0]; //nickname
+            arr[2] = arrParts[1]; //Classroom
+            arr[3] = arrParts[3]; //Message
+            itm = new ListViewItem(arr);
+
+            //INSERT INTO DATALISTVIEW
+            dataGridView.BeginInvoke((MethodInvoker)delegate { dataGridView.Rows.Add(btmAvatar, arrParts[0], arrParts[1], arrParts[3]); });
+        }
 
         private void readXmlRules()
         {
