@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartH2O_Alarm", "SmartH2O_Alarm\SmartH2O_Alarm.csproj", "{BEA2F324-739A-4A81-97E4-5168188880CE}"
 EndProject
@@ -10,6 +10,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartH2O-DLog", "SmartH2O-DLog\SmartH2O-DLog.csproj", "{1E8B7013-F59E-4995-A96F-2C3B008E4DB7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartH2O_Service", "SmartH2O_Service\SmartH2O_Service.csproj", "{CF7C4F75-11D4-408D-A8B0-2B5A56708E7C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{65F0F587-CDC0-45DD-8D04-81B6414DC4B6}"
+	ProjectSection(SolutionItems) = preProject
+		links.txt = links.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
