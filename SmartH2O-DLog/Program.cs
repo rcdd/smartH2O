@@ -49,8 +49,8 @@ namespace SmartH2O_DLog
         private static void client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
         {   
             String strTemp = Encoding.UTF8.GetString(e.Message);
-            XElement t = XElement.Parse(strTemp);
-
+            //XElement t = XElement.Parse(strTemp);
+            //Console.WriteLine(strTemp);
             //ServiceLog.ServiceLogClient service = new ServiceLog.ServiceLogClient();
             ServiceLogLocal.ServiceLogClient service = new ServiceLogLocal.ServiceLogClient();
             Console.Write(service.SendValues(strTemp));
