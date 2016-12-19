@@ -16,6 +16,7 @@ using System.Threading;
 using System.Globalization;
 using uPLibrary.Networking.M2Mqtt;
 using uPLibrary.Networking.M2Mqtt.Messages;
+using System.Xml.Linq;
 
 namespace SmartH2O_Alarm
 {
@@ -34,15 +35,16 @@ namespace SmartH2O_Alarm
             InitializeComponent();
             readXmlRules();
 
+            
             //connect to mosquito
-            MqttClient client = new MqttClient("127.0.0.1");
-            client.Connect(Guid.NewGuid().ToString());
+            MqttClient client = new MqttClient("host.dynip.sapo.pt", 21, false, null, null, MqttSslProtocols.None);
+            client.Connect(Guid.NewGuid().ToString(), "isuser", "is2016");
             if (client.IsConnected)
             {
                 //Subscribe
                 string[] m_strTopicsInfo = new string[1];
                 m_strTopicsInfo[0] = "SensorValues";
-                client.readSensors += readSensors;
+                client.MqttMsgPublishReceived += readSensors;
                 byte[] qosLevels = { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE };
                 client.Subscribe(m_strTopicsInfo, qosLevels);
             }
@@ -52,19 +54,6 @@ namespace SmartH2O_Alarm
                 return;
             }
 
-
-
-            /*foreach (Sensor sen in sensorList)
-            {
-                Console.WriteLine(sen.name);
-                Console.WriteLine("---------------");
-                Console.WriteLine(sen.eqVal);
-                Console.WriteLine(sen.grVal);
-                Console.WriteLine(sen.lsVal);
-                Console.WriteLine(sen.btMax);
-                Console.WriteLine(sen.btMin);
-                Console.WriteLine("****************************");
-            }*/
 
             //populate listView
             foreach (Sensor sensor in sensorList)
@@ -84,28 +73,65 @@ namespace SmartH2O_Alarm
 
     }
 
-        private static void readSensors(object sender, MqttMsgPublishEventArgs e)
+        private void readSensors(object sender, MqttMsgPublishEventArgs e)
         {
-            //Console.WriteLine("Received = " + Encoding.UTF8.GetString(e.Message) + " on topic " + e.Topic);            
-            //EXTRACT FIELDS
             String strTemp = Encoding.UTF8.GetString(e.Message);
-            //string[] arrParts = strTemp.Split(new string[] {"|"}, StringSplitOptions.RemoveEmptyEntries);
-            string[] arrParts = ExtractFieldsFromXml(strTemp);
+            XElement t = XElement.Parse(strTemp);
+            float value = 0;
+            String sensorName = t.Element("Name").Value;
 
-            //RECOVER AVATAR IMG
-            Bitmap btmAvatar = ImageHandler.Base64StringToImage(arrParts[2]);
+            foreach (Sensor s in sensorList)
+            {
+                if (s.name.Equals(sensorName))
+                {
+                    try
+                    {
+                        value = float.Parse(t.Element("Value").Value, CultureInfo.GetCultureInfo("en-US"));
 
-            //PACK INFO
-            string[] arr = new string[4];
-            ListViewItem itm;
-            arr[0] = arrParts[2]; //avatar
-            arr[1] = arrParts[0]; //nickname
-            arr[2] = arrParts[1]; //Classroom
-            arr[3] = arrParts[3]; //Message
-            itm = new ListViewItem(arr);
+                        if (s.eqStatus == 1 && value == s.eqVal)
+                        {
+                            publishAlarm(t, "Equal " + s.eqVal);
+                        }
+                        if (s.lsStatus == 1 && value <= s.lsVal)
+                        {
+                            publishAlarm(t, "Less " + s.lsVal);
+                        }
+                        if (s.grStatus == 1 && value >= s.grVal)
+                        {
+                            publishAlarm(t, "Greate " + s.grVal);
+                        }
 
-            //INSERT INTO DATALISTVIEW
-            dataGridView.BeginInvoke((MethodInvoker)delegate { dataGridView.Rows.Add(btmAvatar, arrParts[0], arrParts[1], arrParts[3]); });
+                        if (s.btStatus == 1 && (value >= s.btMin && value <= s.btMax))
+                        {
+                            publishAlarm(t, "Between " + s.btMin + " and " + s.btMax);
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        throw new Exception("Parse element to string error!");
+                    }
+                }
+            }
+
+        }
+
+        private void publishAlarm(XElement x, String type)
+        {
+            MqttClient client = new MqttClient("host.dynip.sapo.pt", 21, false, null, null, MqttSslProtocols.None);
+            client.Connect(Guid.NewGuid().ToString(), "isuser", "is2016");
+
+            XElement element = new XElement("Sensor", new XElement("ID", x.Element("ID").Value), 
+                new XElement("Name", x.Element("Name").Value), 
+                new XElement("Value", x.Element("Value").Value), 
+                new XElement("Time", x.Element("Time").Value), 
+                new XElement("Date", x.Element("Date").Value),
+                new XElement("Alarm", type));
+
+            if (client.IsConnected)
+            {
+                Console.WriteLine(element);
+                client.Publish("Alarms", Encoding.UTF8.GetBytes(element.ToString()));
+            }
         }
 
         private void readXmlRules()
