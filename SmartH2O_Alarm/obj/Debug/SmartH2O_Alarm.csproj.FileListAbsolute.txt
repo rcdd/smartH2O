@@ -7,3 +7,14 @@ D:\Dropbox\EI\3Ano\IS\SHARED_SI\smartH2O\SmartH2O_Alarm\obj\Debug\SmartH2O_Alarm
 D:\Dropbox\EI\3Ano\IS\SHARED_SI\smartH2O\SmartH2O_Alarm\obj\Debug\SmartH2O_Alarm.SmartH20_Alarm.resources
 D:\Dropbox\EI\3Ano\IS\SHARED_SI\smartH2O\SmartH2O_Alarm\obj\Debug\SmartH2O_Alarm.Properties.Resources.resources
 D:\Dropbox\EI\3Ano\IS\SHARED_SI\smartH2O\SmartH2O_Alarm\obj\Debug\SmartH2O_Alarm.csproj.GenerateResource.Cache
+C:\Users\rpbeat\Desktop\EngenhariaInformatica_3ano\IS\smartH2O\SmartH2O_Alarm\bin\Debug\SmartH2O_Alarm.exe.config
+C:\Users\rpbeat\Desktop\EngenhariaInformatica_3ano\IS\smartH2O\SmartH2O_Alarm\obj\Debug\SmartH2O_Alarm.exe
+C:\Users\rpbeat\Desktop\EngenhariaInformatica_3ano\IS\smartH2O\SmartH2O_Alarm\obj\Debug\SmartH2O_Alarm.pdb
+C:\Users\rpbeat\Desktop\EngenhariaInformatica_3ano\IS\smartH2O\SmartH2O_Alarm\bin\Debug\SmartH2O_Alarm.exe
+C:\Users\rpbeat\Desktop\EngenhariaInformatica_3ano\IS\smartH2O\SmartH2O_Alarm\bin\Debug\SmartH2O_Alarm.pdb
+C:\Users\rpbeat\Desktop\EngenhariaInformatica_3ano\IS\smartH2O\SmartH2O_Alarm\bin\Debug\M2Mqtt.Net.dll
+C:\Users\rpbeat\Desktop\EngenhariaInformatica_3ano\IS\smartH2O\SmartH2O_Alarm\bin\Debug\M2Mqtt.Net.pdb
+C:\Users\rpbeat\Desktop\EngenhariaInformatica_3ano\IS\smartH2O\SmartH2O_Alarm\obj\Debug\SmartH2O_Alarm.csprojResolveAssemblyReference.cache
+C:\Users\rpbeat\Desktop\EngenhariaInformatica_3ano\IS\smartH2O\SmartH2O_Alarm\obj\Debug\SmartH2O_Alarm.SmartH20_Alarm.resources
+C:\Users\rpbeat\Desktop\EngenhariaInformatica_3ano\IS\smartH2O\SmartH2O_Alarm\obj\Debug\SmartH2O_Alarm.Properties.Resources.resources
+C:\Users\rpbeat\Desktop\EngenhariaInformatica_3ano\IS\smartH2O\SmartH2O_Alarm\obj\Debug\SmartH2O_Alarm.csproj.GenerateResource.Cache

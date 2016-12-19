@@ -6,6 +6,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 using System.Xml;
+using System.Xml.Linq;
 
 namespace SmartH2O_Service
 {
@@ -34,16 +35,26 @@ namespace SmartH2O_Service
         {
             string XmlPath = Path.GetDirectoryName(Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory())) + "\\App_Data\\log-sensors.xml";
             XmlDocument doc = new XmlDocument();
+            LinkedList<XElement> sensors = new LinkedList<XElement>();
             if (File.Exists(XmlPath))
-            { 
+            {
                 doc.Load(XmlPath);
-                XmlNodeList elemList = doc.GetElementsByTagName("sensor");
-                for (int i = 0; i < elemList.Count; i++)
+
+               /* XmlNode root = doc.FirstChild;
+
+                StringBuilder sb = new StringBuilder();
+
+                if (root.HasChildNodes)
                 {
-                    Console.WriteLine(elemList[i].InnerXml);
-                }
-                return "I found the file!"+doc.Name;
-            }else
+                    for (int i = 0; i < root.ChildNodes.Count; i++)
+                    {
+                        sb.Append(root.ChildNodes[i].InnerText+"\n");
+                    }
+                }*/
+
+                return "I found the file!" + doc.InnerXml;
+            }
+            else
             {
                 return "File does not exists yet";
             }
