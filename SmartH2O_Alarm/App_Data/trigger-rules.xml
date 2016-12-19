@@ -15,12 +15,12 @@
         <status>0</status>
       </less>
       <between>
-        <valueMax>1</valueMax>
+        <valueMax>14</valueMax>
         <valueMin>0</valueMin>
-        <status>0</status>
+        <status>1</status>
       </between>
     </triggers>
-    <status>0</status>
+    <status>1</status>
   </sensor>
   <sensor name="NH3">
     <triggers>
