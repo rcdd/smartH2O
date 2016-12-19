@@ -7,25 +7,25 @@
         <status>0</status>
       </equal>
       <greater>
-        <value>10</value>
-        <status>1</status>
+        <value>5</value>
+        <status>0</status>
       </greater>
       <less>
         <value>5</value>
-        <status>1</status>
+        <status>0</status>
       </less>
       <between>
         <valueMax>1</valueMax>
         <valueMin>0</valueMin>
-        <status>1</status>
+        <status>0</status>
       </between>
     </triggers>
-    <status>1</status>
+    <status>0</status>
   </sensor>
   <sensor name="NH3">
     <triggers>
       <equal>
-        <value>50</value>
+        <value>5</value>
         <status>0</status>
       </equal>
       <greater>
@@ -34,7 +34,7 @@
       </greater>
       <less>
         <value>5</value>
-        <status>1</status>
+        <status>0</status>
       </less>
       <between>
         <valueMax>1</valueMax>
@@ -42,7 +42,7 @@
         <status>0</status>
       </between>
     </triggers>
-    <status>1</status>
+    <status>0</status>
   </sensor>
   <sensor name="CI2">
     <triggers>
