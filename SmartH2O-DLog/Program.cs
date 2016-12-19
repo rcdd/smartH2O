@@ -10,8 +10,6 @@ using System.Xml.Schema;
 using uPLibrary.Networking.M2Mqtt;
 using uPLibrary.Networking.M2Mqtt.Messages;
 
-// send to web service http://stackoverflow.com/questions/17535872/http-post-xml-data-in-c-sharp
-
 namespace SmartH2O_DLog
 {
     class Program
@@ -23,11 +21,14 @@ namespace SmartH2O_DLog
             if (client.IsConnected)
             {
                 //Subscribe
-                string[] m_strTopicsInfo = new string[1];
-                m_strTopicsInfo[0] = "SensorValues";
+                string[] m_strTopicsInfoLog = new string[1];
+                string[] m_strTopicsInfoAlarm = new string[1];
+                m_strTopicsInfoLog[0] = "SensorValues";
+                m_strTopicsInfoAlarm[0] = ""
+
                 client.MqttMsgPublishReceived += client_MqttMsgPublishReceived;
                 byte[] qosLevels = { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE };
-                client.Subscribe(m_strTopicsInfo, qosLevels);
+                client.Subscribe(m_strTopicsInfoLog, qosLevels);
             }
             else
             {
@@ -43,14 +44,14 @@ namespace SmartH2O_DLog
 
             ServiceLog.ServiceLogClient service = new ServiceLog.ServiceLogClient();
             Console.Write(service.SendValues(strTemp));
-            //Console.Write(service.GetAllValues());
+            Console.Write(service.GetAllValues());
 
-           /* Console.Write("Received msg: ");
-            Console.WriteLine(t.Element("Name").Value);
-            Console.WriteLine(t.Element("Value").Value);
-            Console.WriteLine(t.Element("ID").Value);
-            Console.WriteLine(t.Element("Date").Value);
-            Console.WriteLine(t.Element("Time").Value+"\n\n");*/
+            /* Console.Write("Received msg: ");
+             Console.WriteLine(t.Element("Name").Value);
+             Console.WriteLine(t.Element("Value").Value);
+             Console.WriteLine(t.Element("ID").Value);
+             Console.WriteLine(t.Element("Date").Value);
+             Console.WriteLine(t.Element("Time").Value+"\n\n");*/
         }
     }
 }

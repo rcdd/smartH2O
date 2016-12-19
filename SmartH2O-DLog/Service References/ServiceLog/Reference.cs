@@ -32,6 +32,30 @@ namespace SmartH2O_DLog.ServiceLog {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceLog/GetAllValues", ReplyAction="http://tempuri.org/IServiceLog/GetAllValuesResponse")]
         System.Threading.Tasks.Task<string> GetAllValuesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceLog/GetValuesBySensorName", ReplyAction="http://tempuri.org/IServiceLog/GetValuesBySensorNameResponse")]
+        string GetValuesBySensorName(string name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceLog/GetValuesBySensorName", ReplyAction="http://tempuri.org/IServiceLog/GetValuesBySensorNameResponse")]
+        System.Threading.Tasks.Task<string> GetValuesBySensorNameAsync(string name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceLog/GetValuesByDate", ReplyAction="http://tempuri.org/IServiceLog/GetValuesByDateResponse")]
+        string GetValuesByDate(string date);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceLog/GetValuesByDate", ReplyAction="http://tempuri.org/IServiceLog/GetValuesByDateResponse")]
+        System.Threading.Tasks.Task<string> GetValuesByDateAsync(string date);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceLog/GetValuesByDateAndHour", ReplyAction="http://tempuri.org/IServiceLog/GetValuesByDateAndHourResponse")]
+        string GetValuesByDateAndHour(string date, string hour);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceLog/GetValuesByDateAndHour", ReplyAction="http://tempuri.org/IServiceLog/GetValuesByDateAndHourResponse")]
+        System.Threading.Tasks.Task<string> GetValuesByDateAndHourAsync(string date, string hour);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceLog/GetValuesBetweenDate", ReplyAction="http://tempuri.org/IServiceLog/GetValuesBetweenDateResponse")]
+        string GetValuesBetweenDate(string date1, string date2);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceLog/GetValuesBetweenDate", ReplyAction="http://tempuri.org/IServiceLog/GetValuesBetweenDateResponse")]
+        System.Threading.Tasks.Task<string> GetValuesBetweenDateAsync(string date1, string date2);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -83,6 +107,38 @@ namespace SmartH2O_DLog.ServiceLog {
         
         public System.Threading.Tasks.Task<string> GetAllValuesAsync() {
             return base.Channel.GetAllValuesAsync();
+        }
+        
+        public string GetValuesBySensorName(string name) {
+            return base.Channel.GetValuesBySensorName(name);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetValuesBySensorNameAsync(string name) {
+            return base.Channel.GetValuesBySensorNameAsync(name);
+        }
+        
+        public string GetValuesByDate(string date) {
+            return base.Channel.GetValuesByDate(date);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetValuesByDateAsync(string date) {
+            return base.Channel.GetValuesByDateAsync(date);
+        }
+        
+        public string GetValuesByDateAndHour(string date, string hour) {
+            return base.Channel.GetValuesByDateAndHour(date, hour);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetValuesByDateAndHourAsync(string date, string hour) {
+            return base.Channel.GetValuesByDateAndHourAsync(date, hour);
+        }
+        
+        public string GetValuesBetweenDate(string date1, string date2) {
+            return base.Channel.GetValuesBetweenDate(date1, date2);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetValuesBetweenDateAsync(string date1, string date2) {
+            return base.Channel.GetValuesBetweenDateAsync(date1, date2);
         }
     }
 }

@@ -40,6 +40,64 @@
           </xs:sequence>
         </xs:complexType>
       </xs:element>
+      <xs:element name="GetValuesBySensorName">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetValuesBySensorNameResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="GetValuesBySensorNameResult" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetValuesByDate">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="date" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetValuesByDateResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="GetValuesByDateResult" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetValuesByDateAndHour">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="date" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="hour" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetValuesByDateAndHourResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="GetValuesByDateAndHourResult" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetValuesBetweenDate">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="date1" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="date2" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetValuesBetweenDateResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="GetValuesBetweenDateResult" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
     </xs:schema>
     <xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <xs:element name="anyType" nillable="true" type="xs:anyType" />
@@ -101,6 +159,30 @@
   <wsdl:message name="IServiceLog_GetAllValues_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAllValuesResponse" />
   </wsdl:message>
+  <wsdl:message name="IServiceLog_GetValuesBySensorName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetValuesBySensorName" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLog_GetValuesBySensorName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetValuesBySensorNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLog_GetValuesByDate_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetValuesByDate" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLog_GetValuesByDate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetValuesByDateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLog_GetValuesByDateAndHour_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetValuesByDateAndHour" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLog_GetValuesByDateAndHour_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetValuesByDateAndHourResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLog_GetValuesBetweenDate_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetValuesBetweenDate" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLog_GetValuesBetweenDate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetValuesBetweenDateResponse" />
+  </wsdl:message>
   <wsdl:portType name="IServiceLog">
     <wsdl:operation name="DoWork">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceLog/DoWork" message="tns:IServiceLog_DoWork_InputMessage" />
@@ -113,6 +195,22 @@
     <wsdl:operation name="GetAllValues">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceLog/GetAllValues" message="tns:IServiceLog_GetAllValues_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceLog/GetAllValuesResponse" message="tns:IServiceLog_GetAllValues_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetValuesBySensorName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceLog/GetValuesBySensorName" message="tns:IServiceLog_GetValuesBySensorName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceLog/GetValuesBySensorNameResponse" message="tns:IServiceLog_GetValuesBySensorName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetValuesByDate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceLog/GetValuesByDate" message="tns:IServiceLog_GetValuesByDate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceLog/GetValuesByDateResponse" message="tns:IServiceLog_GetValuesByDate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetValuesByDateAndHour">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceLog/GetValuesByDateAndHour" message="tns:IServiceLog_GetValuesByDateAndHour_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceLog/GetValuesByDateAndHourResponse" message="tns:IServiceLog_GetValuesByDateAndHour_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetValuesBetweenDate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceLog/GetValuesBetweenDate" message="tns:IServiceLog_GetValuesBetweenDate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceLog/GetValuesBetweenDateResponse" message="tns:IServiceLog_GetValuesBetweenDate_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IServiceLog" type="tns:IServiceLog">
@@ -137,6 +235,42 @@
     </wsdl:operation>
     <wsdl:operation name="GetAllValues">
       <soap:operation soapAction="http://tempuri.org/IServiceLog/GetAllValues" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetValuesBySensorName">
+      <soap:operation soapAction="http://tempuri.org/IServiceLog/GetValuesBySensorName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetValuesByDate">
+      <soap:operation soapAction="http://tempuri.org/IServiceLog/GetValuesByDate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetValuesByDateAndHour">
+      <soap:operation soapAction="http://tempuri.org/IServiceLog/GetValuesByDateAndHour" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetValuesBetweenDate">
+      <soap:operation soapAction="http://tempuri.org/IServiceLog/GetValuesBetweenDate" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
