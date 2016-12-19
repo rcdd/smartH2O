@@ -51,11 +51,12 @@ namespace SmartH2O_DLog
             String strTemp = Encoding.UTF8.GetString(e.Message);
             XElement t = XElement.Parse(strTemp);
 
-            ServiceLog.ServiceLogClient service = new ServiceLog.ServiceLogClient();
+            //ServiceLog.ServiceLogClient service = new ServiceLog.ServiceLogClient();
+            ServiceLogLocal.ServiceLogClient service = new ServiceLogLocal.ServiceLogClient();
             Console.Write(service.SendValues(strTemp));
             //Console.Write(service.GetAllValues());
 
-            /* Console.Write("Received msg: ");
+            /*Console.Write("Received msg: ");
              Console.WriteLine(t.Element("Name").Value);
              Console.WriteLine(t.Element("Value").Value);
              Console.WriteLine(t.Element("ID").Value);
@@ -69,16 +70,17 @@ namespace SmartH2O_DLog
             XElement t = XElement.Parse(strTemp);
 
             //ServiceLog.ServiceLogClient service = new ServiceLog.ServiceLogClient();
-            //Console.Write(service.SendValues(strTemp));
-            //Console.Write(service.GetAllValues());
+            ServiceLogLocal.ServiceLogClient service = new ServiceLogLocal.ServiceLogClient();
+            Console.Write(service.SendAlarm(strTemp));
+            Console.Write(service.GetAllAlmars());
 
-             Console.Write("Received msg: ");
-             Console.WriteLine(t.Element("Name").Value);
-             Console.WriteLine(t.Element("Value").Value);
-             Console.WriteLine(t.Element("ID").Value);
-             Console.WriteLine(t.Element("Date").Value);
-             Console.WriteLine(t.Element("Alarm").Value);
-             Console.WriteLine(t.Element("Time").Value+"\n\n");
+            /*Console.Write("Received msg: ");
+            Console.WriteLine(t.Element("Name").Value);
+            Console.WriteLine(t.Element("Value").Value);
+            Console.WriteLine(t.Element("ID").Value);
+            Console.WriteLine(t.Element("Date").Value);
+            Console.WriteLine(t.Element("Alarm").Value);
+            Console.WriteLine(t.Element("Time").Value+"\n\n");*/
         }
     }
 }

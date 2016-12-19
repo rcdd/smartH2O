@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ServiceLog" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xs:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="DoWork">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DoWorkResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="DoWorkResult" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SendValues">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="data" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SendValuesResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="SendValuesResult" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetAllValues">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetAllValuesResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="GetAllValuesResult" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetValuesBySensorName">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetValuesBySensorNameResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="GetValuesBySensorNameResult" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetValuesByDate">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="date" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetValuesByDateResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="GetValuesByDateResult" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetValuesByDateAndHour">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="date" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="hour" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetValuesByDateAndHourResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="GetValuesByDateAndHourResult" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetValuesBetweenDate">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="date1" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="date2" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetValuesBetweenDateResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="GetValuesBetweenDateResult" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SendAlarm">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="docc" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SendAlarmResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="SendAlarmResult" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetAllAlmars">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetAllAlmarsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="GetAllAlmarsResult" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="anyType" nillable="true" type="xs:anyType" />
+      <xs:element name="anyURI" nillable="true" type="xs:anyURI" />
+      <xs:element name="base64Binary" nillable="true" type="xs:base64Binary" />
+      <xs:element name="boolean" nillable="true" type="xs:boolean" />
+      <xs:element name="byte" nillable="true" type="xs:byte" />
+      <xs:element name="dateTime" nillable="true" type="xs:dateTime" />
+      <xs:element name="decimal" nillable="true" type="xs:decimal" />
+      <xs:element name="double" nillable="true" type="xs:double" />
+      <xs:element name="float" nillable="true" type="xs:float" />
+      <xs:element name="int" nillable="true" type="xs:int" />
+      <xs:element name="long" nillable="true" type="xs:long" />
+      <xs:element name="QName" nillable="true" type="xs:QName" />
+      <xs:element name="short" nillable="true" type="xs:short" />
+      <xs:element name="string" nillable="true" type="xs:string" />
+      <xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte" />
+      <xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt" />
+      <xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong" />
+      <xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort" />
+      <xs:element name="char" nillable="true" type="tns:char" />
+      <xs:simpleType name="char">
+        <xs:restriction base="xs:int" />
+      </xs:simpleType>
+      <xs:element name="duration" nillable="true" type="tns:duration" />
+      <xs:simpleType name="duration">
+        <xs:restriction base="xs:duration">
+          <xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?" />
+          <xs:minInclusive value="-P10675199DT2H48M5.4775808S" />
+          <xs:maxInclusive value="P10675199DT2H48M5.4775807S" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="guid" nillable="true" type="tns:guid" />
+      <xs:simpleType name="guid">
+        <xs:restriction base="xs:string">
+          <xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:attribute name="FactoryType" type="xs:QName" />
+      <xs:attribute name="Id" type="xs:ID" />
+      <xs:attribute name="Ref" type="xs:IDREF" />
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="IServiceLog_DoWork_InputMessage">
+    <wsdl:part name="parameters" element="tns:DoWork" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLog_DoWork_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DoWorkResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLog_SendValues_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendValues" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLog_SendValues_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendValuesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLog_GetAllValues_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllValues" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLog_GetAllValues_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllValuesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLog_GetValuesBySensorName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetValuesBySensorName" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLog_GetValuesBySensorName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetValuesBySensorNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLog_GetValuesByDate_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetValuesByDate" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLog_GetValuesByDate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetValuesByDateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLog_GetValuesByDateAndHour_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetValuesByDateAndHour" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLog_GetValuesByDateAndHour_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetValuesByDateAndHourResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLog_GetValuesBetweenDate_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetValuesBetweenDate" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLog_GetValuesBetweenDate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetValuesBetweenDateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLog_SendAlarm_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendAlarm" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLog_SendAlarm_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendAlarmResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLog_GetAllAlmars_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllAlmars" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLog_GetAllAlmars_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllAlmarsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IServiceLog">
+    <wsdl:operation name="DoWork">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceLog/DoWork" message="tns:IServiceLog_DoWork_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceLog/DoWorkResponse" message="tns:IServiceLog_DoWork_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendValues">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceLog/SendValues" message="tns:IServiceLog_SendValues_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceLog/SendValuesResponse" message="tns:IServiceLog_SendValues_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllValues">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceLog/GetAllValues" message="tns:IServiceLog_GetAllValues_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceLog/GetAllValuesResponse" message="tns:IServiceLog_GetAllValues_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetValuesBySensorName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceLog/GetValuesBySensorName" message="tns:IServiceLog_GetValuesBySensorName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceLog/GetValuesBySensorNameResponse" message="tns:IServiceLog_GetValuesBySensorName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetValuesByDate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceLog/GetValuesByDate" message="tns:IServiceLog_GetValuesByDate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceLog/GetValuesByDateResponse" message="tns:IServiceLog_GetValuesByDate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetValuesByDateAndHour">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceLog/GetValuesByDateAndHour" message="tns:IServiceLog_GetValuesByDateAndHour_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceLog/GetValuesByDateAndHourResponse" message="tns:IServiceLog_GetValuesByDateAndHour_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetValuesBetweenDate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceLog/GetValuesBetweenDate" message="tns:IServiceLog_GetValuesBetweenDate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceLog/GetValuesBetweenDateResponse" message="tns:IServiceLog_GetValuesBetweenDate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendAlarm">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceLog/SendAlarm" message="tns:IServiceLog_SendAlarm_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceLog/SendAlarmResponse" message="tns:IServiceLog_SendAlarm_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAlmars">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceLog/GetAllAlmars" message="tns:IServiceLog_GetAllAlmars_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceLog/GetAllAlmarsResponse" message="tns:IServiceLog_GetAllAlmars_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IServiceLog" type="tns:IServiceLog">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="DoWork">
+      <soap:operation soapAction="http://tempuri.org/IServiceLog/DoWork" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendValues">
+      <soap:operation soapAction="http://tempuri.org/IServiceLog/SendValues" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllValues">
+      <soap:operation soapAction="http://tempuri.org/IServiceLog/GetAllValues" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetValuesBySensorName">
+      <soap:operation soapAction="http://tempuri.org/IServiceLog/GetValuesBySensorName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetValuesByDate">
+      <soap:operation soapAction="http://tempuri.org/IServiceLog/GetValuesByDate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetValuesByDateAndHour">
+      <soap:operation soapAction="http://tempuri.org/IServiceLog/GetValuesByDateAndHour" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetValuesBetweenDate">
+      <soap:operation soapAction="http://tempuri.org/IServiceLog/GetValuesBetweenDate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendAlarm">
+      <soap:operation soapAction="http://tempuri.org/IServiceLog/SendAlarm" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAlmars">
+      <soap:operation soapAction="http://tempuri.org/IServiceLog/GetAllAlmars" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServiceLog">
+    <wsdl:port name="BasicHttpBinding_IServiceLog" binding="tns:BasicHttpBinding_IServiceLog">
+      <soap:address location="http://localhost:29976/ServiceLog.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
