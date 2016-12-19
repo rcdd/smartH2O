@@ -6,18 +6,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
+using System.Xml.Schema;
 using uPLibrary.Networking.M2Mqtt;
 using uPLibrary.Networking.M2Mqtt.Messages;
+
+// send to web service http://stackoverflow.com/questions/17535872/http-post-xml-data-in-c-sharp
 
 namespace SmartH2O_DLog
 {
     class Program
     {
-       
+        static bool xmlValid = true;
+        static string strXmlErrorReason;
+        static string XmlPath = Path.GetDirectoryName(Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory())) + "..\\..\\SmartH2O_Service\\App_Data\\log-sensors.xml";
+        static string xsdPath = Path.GetDirectoryName(Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory())) + "..\\..\\SmartH2O_Service\\App_Data\\log-sensors.xsd";
         //private static XmlDocument doc = new XmlDocument();
         static void Main(string[] args)
         {
-
             MqttClient client = new MqttClient("127.0.0.1");
             client.Connect(Guid.NewGuid().ToString());
             if (client.IsConnected)
@@ -38,18 +43,19 @@ namespace SmartH2O_DLog
         }
 
         private static void client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
-        {
-
-            string XmlPath = Path.GetDirectoryName(Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory())) + "\\App_Data\\log-sensors.xml";
+        {   
             String strTemp = Encoding.UTF8.GetString(e.Message);
             XElement t = XElement.Parse(strTemp);
 
-            Console.Write("Received msg: ");
+            ServiceLog.ServiceLogClient service = new ServiceLog.ServiceLogClient();
+            Console.Write(service.SendValues(strTemp));
+            Console.Write(service.GetAllValues());
+           /* Console.Write("Received msg: ");
             Console.WriteLine(t.Element("Name").Value);
             Console.WriteLine(t.Element("Value").Value);
             Console.WriteLine(t.Element("ID").Value);
             Console.WriteLine(t.Element("Date").Value);
-            Console.WriteLine(t.Element("Time").Value+"\n\n");
+            Console.WriteLine(t.Element("Time").Value+"\n\n");*/
 
             XmlDocument doc = new XmlDocument();
             
@@ -61,10 +67,17 @@ namespace SmartH2O_DLog
             }else
             {
                 doc.Load(XmlPath);
+
                 XmlNode root = doc.DocumentElement;
                 XmlNode myNode = root.SelectSingleNode("/Sensors");
                 writeOnLogFile(doc, myNode, XmlPath, t);
             }
+        }
+
+        private static void validateXML(Object sender, ValidationEventArgs args)
+        {
+            xmlValid = false;
+            strXmlErrorReason = args.Message;
         }
 
         private static void writeOnLogFile(XmlDocument xmlDoc, XmlNode rootNode, string xmlPath, XElement t)
@@ -92,6 +105,22 @@ namespace SmartH2O_DLog
             timeNode.InnerText = t.Element("Time").Value;
             sensor.AppendChild(timeNode);
 
+            //VALIDATION
+            xmlDoc.Schemas.Add(null, xsdPath);
+            ValidationEventHandler eventHandler = new ValidationEventHandler(validateXML);
+            xmlDoc.Validate(eventHandler);
+            if (xmlValid)
+            {
+                Console.Write("XML Status: OK!\n\n");
+            }
+            else
+            {
+                throw new XmlException(strXmlErrorReason.ToString());
+            }
+
+           // ServiceLog.ServiceLogClient service = new ServiceLog.ServiceLogClient();
+
+            //Console.Write(service.SendValues(xmlDoc.InnerText));
             xmlDoc.Save(xmlPath);
         }
     }
