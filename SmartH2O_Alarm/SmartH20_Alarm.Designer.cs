@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SmartH20_Alarm));
             this.label1 = new System.Windows.Forms.Label();
             this.checkBoxActivate = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -58,6 +60,8 @@
             this.labelSensorName = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.labelMessage = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -364,11 +368,30 @@
             this.labelMessage.Size = new System.Drawing.Size(0, 16);
             this.labelMessage.TabIndex = 15;
             // 
+            // button1
+            // 
+            this.button1.ForeColor = System.Drawing.Color.DarkBlue;
+            this.button1.Location = new System.Drawing.Point(400, 314);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(100, 23);
+            this.button1.TabIndex = 16;
+            this.button1.Text = "Minimize to Tray";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // notifyIcon1
+            // 
+            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
+            this.notifyIcon1.Text = "SmartH20";
+            this.notifyIcon1.Visible = true;
+            this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
+            // 
             // SmartH20_Alarm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(607, 345);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.labelMessage);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.labelSensorName);
@@ -379,8 +402,11 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.MaximizeBox = false;
             this.Name = "SmartH20_Alarm";
+            this.ShowIcon = false;
             this.Text = "SmartH2O";
+            this.Resize += new System.EventHandler(this.frmMain_Resize);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox5.ResumeLayout(false);
@@ -427,6 +453,8 @@
         private System.Windows.Forms.Label labelSensorName;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label labelMessage;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.NotifyIcon notifyIcon1;
     }
 }
 

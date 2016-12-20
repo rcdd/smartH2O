@@ -8,11 +8,11 @@
       </equal>
       <greater>
         <value>5</value>
-        <status>0</status>
+        <status>1</status>
       </greater>
       <less>
-        <value>5</value>
-        <status>0</status>
+        <value>3</value>
+        <status>1</status>
       </less>
       <between>
         <valueMax>14</valueMax>
