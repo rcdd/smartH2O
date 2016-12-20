@@ -37,12 +37,12 @@
         <status>0</status>
       </less>
       <between>
-        <valueMax>1</valueMax>
+        <valueMax>15</valueMax>
         <valueMin>0</valueMin>
-        <status>0</status>
+        <status>1</status>
       </between>
     </triggers>
-    <status>0</status>
+    <status>1</status>
   </sensor>
   <sensor name="CI2">
     <triggers>
@@ -51,8 +51,8 @@
         <status>0</status>
       </equal>
       <greater>
-        <value>5</value>
-        <status>0</status>
+        <value>1</value>
+        <status>1</status>
       </greater>
       <less>
         <value>5</value>
@@ -64,6 +64,6 @@
         <status>0</status>
       </between>
     </triggers>
-    <status>0</status>
+    <status>1</status>
   </sensor>
 </SmartH2O>

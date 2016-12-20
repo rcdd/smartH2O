@@ -489,7 +489,7 @@ namespace SmartH2O_Alarm
         {
             get
             {
-                return "Between values is incorrect - min value greater than max value";
+                return "Between values is incorrect - min value is greater than max value";
             }
         }
     }
@@ -501,7 +501,7 @@ namespace SmartH2O_Alarm
         {
             get
             {
-                return "Min value is grater than Max value";
+                return "Less value is greater than greate value";
             }
         }
     }

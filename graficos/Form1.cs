@@ -43,6 +43,7 @@ namespace graficos
         private void drawChart(LiveCharts.WinForms.CartesianChart chart, XmlNodeList nodeList)
         {
             ChartValues<double> values = new ChartValues<double>();
+           
             foreach (XmlNode node in nodeList)
             {
                 values.Add(double.Parse(node.InnerText, System.Globalization.CultureInfo.InvariantCulture));
@@ -65,10 +66,11 @@ namespace graficos
             phChart1.AxisY.Add(new Axis
             {
                 IsMerged = true,
+                Labels = { "sfsd", "sdfe"},
                 Separator = new Separator
                 {
                     StrokeThickness = 1.5,
-                    StrokeDashArray = new System.Windows.Media.DoubleCollection(new double[] { 10 }),
+                    StrokeDashArray = new System.Windows.Media.DoubleCollection(new double[] { 5 }),
                     Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(64, 79, 86))
                 }
             });
