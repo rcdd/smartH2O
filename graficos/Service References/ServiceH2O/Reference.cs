@@ -68,6 +68,24 @@ namespace graficos.ServiceH2O {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceLog/GetAllAlmars", ReplyAction="http://tempuri.org/IServiceLog/GetAllAlmarsResponse")]
         System.Threading.Tasks.Task<string> GetAllAlmarsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceLog/GetAlarmsByDate", ReplyAction="http://tempuri.org/IServiceLog/GetAlarmsByDateResponse")]
+        string GetAlarmsByDate(string date);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceLog/GetAlarmsByDate", ReplyAction="http://tempuri.org/IServiceLog/GetAlarmsByDateResponse")]
+        System.Threading.Tasks.Task<string> GetAlarmsByDateAsync(string date);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceLog/GetAlarmsBetweenDate", ReplyAction="http://tempuri.org/IServiceLog/GetAlarmsBetweenDateResponse")]
+        string GetAlarmsBetweenDate(string date1, string date2);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceLog/GetAlarmsBetweenDate", ReplyAction="http://tempuri.org/IServiceLog/GetAlarmsBetweenDateResponse")]
+        System.Threading.Tasks.Task<string> GetAlarmsBetweenDateAsync(string date1, string date2);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceLog/GetAlarmsByDateAndHour", ReplyAction="http://tempuri.org/IServiceLog/GetAlarmsByDateAndHourResponse")]
+        string GetAlarmsByDateAndHour(string date, string hour);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceLog/GetAlarmsByDateAndHour", ReplyAction="http://tempuri.org/IServiceLog/GetAlarmsByDateAndHourResponse")]
+        System.Threading.Tasks.Task<string> GetAlarmsByDateAndHourAsync(string date, string hour);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -167,6 +185,30 @@ namespace graficos.ServiceH2O {
         
         public System.Threading.Tasks.Task<string> GetAllAlmarsAsync() {
             return base.Channel.GetAllAlmarsAsync();
+        }
+        
+        public string GetAlarmsByDate(string date) {
+            return base.Channel.GetAlarmsByDate(date);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetAlarmsByDateAsync(string date) {
+            return base.Channel.GetAlarmsByDateAsync(date);
+        }
+        
+        public string GetAlarmsBetweenDate(string date1, string date2) {
+            return base.Channel.GetAlarmsBetweenDate(date1, date2);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetAlarmsBetweenDateAsync(string date1, string date2) {
+            return base.Channel.GetAlarmsBetweenDateAsync(date1, date2);
+        }
+        
+        public string GetAlarmsByDateAndHour(string date, string hour) {
+            return base.Channel.GetAlarmsByDateAndHour(date, hour);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetAlarmsByDateAndHourAsync(string date, string hour) {
+            return base.Channel.GetAlarmsByDateAndHourAsync(date, hour);
         }
     }
 }
