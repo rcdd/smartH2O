@@ -53,7 +53,7 @@ namespace SmartH2O_DU
             client.Connect(Guid.NewGuid().ToString(), "isuser", "is2016");
             if (client.IsConnected)
             {
-                //Console.WriteLine(v);
+                Console.WriteLine(v);
                 client.Publish("SensorValues", Encoding.UTF8.GetBytes(v));
             }
         }
