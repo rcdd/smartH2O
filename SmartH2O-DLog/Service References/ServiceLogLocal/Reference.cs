@@ -8,11 +8,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SmartH2O_DLog.ServiceLog {
+namespace SmartH2O_DLog.ServiceLogLocal {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceLog.IServiceLog")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceLogLocal.IServiceLog")]
     public interface IServiceLog {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceLog/DoWork", ReplyAction="http://tempuri.org/IServiceLog/DoWorkResponse")]
@@ -56,15 +56,27 @@ namespace SmartH2O_DLog.ServiceLog {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceLog/GetValuesBetweenDate", ReplyAction="http://tempuri.org/IServiceLog/GetValuesBetweenDateResponse")]
         System.Threading.Tasks.Task<string> GetValuesBetweenDateAsync(string date1, string date2);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceLog/SendAlarm", ReplyAction="http://tempuri.org/IServiceLog/SendAlarmResponse")]
+        string SendAlarm(string docc);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceLog/SendAlarm", ReplyAction="http://tempuri.org/IServiceLog/SendAlarmResponse")]
+        System.Threading.Tasks.Task<string> SendAlarmAsync(string docc);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceLog/GetAllAlmars", ReplyAction="http://tempuri.org/IServiceLog/GetAllAlmarsResponse")]
+        string GetAllAlmars();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceLog/GetAllAlmars", ReplyAction="http://tempuri.org/IServiceLog/GetAllAlmarsResponse")]
+        System.Threading.Tasks.Task<string> GetAllAlmarsAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IServiceLogChannel : SmartH2O_DLog.ServiceLog.IServiceLog, System.ServiceModel.IClientChannel {
+    public interface IServiceLogChannel : SmartH2O_DLog.ServiceLogLocal.IServiceLog, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class ServiceLogClient : System.ServiceModel.ClientBase<SmartH2O_DLog.ServiceLog.IServiceLog>, SmartH2O_DLog.ServiceLog.IServiceLog {
+    public partial class ServiceLogClient : System.ServiceModel.ClientBase<SmartH2O_DLog.ServiceLogLocal.IServiceLog>, SmartH2O_DLog.ServiceLogLocal.IServiceLog {
         
         public ServiceLogClient() {
         }
@@ -139,6 +151,22 @@ namespace SmartH2O_DLog.ServiceLog {
         
         public System.Threading.Tasks.Task<string> GetValuesBetweenDateAsync(string date1, string date2) {
             return base.Channel.GetValuesBetweenDateAsync(date1, date2);
+        }
+        
+        public string SendAlarm(string docc) {
+            return base.Channel.SendAlarm(docc);
+        }
+        
+        public System.Threading.Tasks.Task<string> SendAlarmAsync(string docc) {
+            return base.Channel.SendAlarmAsync(docc);
+        }
+        
+        public string GetAllAlmars() {
+            return base.Channel.GetAllAlmars();
+        }
+        
+        public System.Threading.Tasks.Task<string> GetAllAlmarsAsync() {
+            return base.Channel.GetAllAlmarsAsync();
         }
     }
 }

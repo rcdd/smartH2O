@@ -52,7 +52,7 @@ namespace SmartH2O_Service
                     }
                 }*/
 
-                return "I found the file!" + doc.InnerXml;
+                return doc.InnerXml;
             }
             else
             {

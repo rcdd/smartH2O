@@ -98,6 +98,32 @@
           </xs:sequence>
         </xs:complexType>
       </xs:element>
+      <xs:element name="SendAlarm">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="docc" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SendAlarmResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="SendAlarmResult" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetAllAlmars">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetAllAlmarsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="GetAllAlmarsResult" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
     </xs:schema>
     <xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <xs:element name="anyType" nillable="true" type="xs:anyType" />
@@ -183,6 +209,18 @@
   <wsdl:message name="IServiceLog_GetValuesBetweenDate_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetValuesBetweenDateResponse" />
   </wsdl:message>
+  <wsdl:message name="IServiceLog_SendAlarm_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendAlarm" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLog_SendAlarm_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendAlarmResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLog_GetAllAlmars_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllAlmars" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLog_GetAllAlmars_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllAlmarsResponse" />
+  </wsdl:message>
   <wsdl:portType name="IServiceLog">
     <wsdl:operation name="DoWork">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceLog/DoWork" message="tns:IServiceLog_DoWork_InputMessage" />
@@ -211,6 +249,14 @@
     <wsdl:operation name="GetValuesBetweenDate">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceLog/GetValuesBetweenDate" message="tns:IServiceLog_GetValuesBetweenDate_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceLog/GetValuesBetweenDateResponse" message="tns:IServiceLog_GetValuesBetweenDate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendAlarm">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceLog/SendAlarm" message="tns:IServiceLog_SendAlarm_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceLog/SendAlarmResponse" message="tns:IServiceLog_SendAlarm_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAlmars">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceLog/GetAllAlmars" message="tns:IServiceLog_GetAllAlmars_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceLog/GetAllAlmarsResponse" message="tns:IServiceLog_GetAllAlmars_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IServiceLog" type="tns:IServiceLog">
@@ -278,10 +324,28 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="SendAlarm">
+      <soap:operation soapAction="http://tempuri.org/IServiceLog/SendAlarm" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAlmars">
+      <soap:operation soapAction="http://tempuri.org/IServiceLog/GetAllAlmars" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="ServiceLog">
     <wsdl:port name="BasicHttpBinding_IServiceLog" binding="tns:BasicHttpBinding_IServiceLog">
-      <soap:address location="http://servicesmarth2o.apphb.com/ServiceLog.svc" />
+      <soap:address location="http://localhost:29976/ServiceLog.svc" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>
