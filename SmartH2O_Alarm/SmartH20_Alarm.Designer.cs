@@ -406,6 +406,7 @@
             this.Name = "SmartH20_Alarm";
             this.ShowIcon = false;
             this.Text = "SmartH2O";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SmartH20_Alarm_FormClosing);
             this.Resize += new System.EventHandler(this.frmMain_Resize);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

@@ -29,6 +29,7 @@ namespace SmartH2O_Alarm
         MqttClient client;
         static bool xmlValid = true;
         static string strXmlErrorReason;
+        string[] m_strTopicsInfo = new string[1] { "SensorValues" };
 
         public SmartH20_Alarm()
         {
@@ -43,8 +44,6 @@ namespace SmartH2O_Alarm
             if (client.IsConnected)
             {
                 //Subscribe
-                string[] m_strTopicsInfo = new string[1];
-                m_strTopicsInfo[0] = "SensorValues";
                 client.MqttMsgPublishReceived += readSensors;
                 byte[] qosLevels = { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE };
                 client.Subscribe(m_strTopicsInfo, qosLevels);
@@ -120,9 +119,6 @@ namespace SmartH2O_Alarm
 
         private void publishAlarm(XElement x, String type)
         {
-           // MqttClient client = new MqttClient("host.dynip.sapo.pt", 21, false, null, null, MqttSslProtocols.None);
-           // client.Connect(Guid.NewGuid().ToString(), "isuser", "is2016");
-
             XElement element = new XElement("Sensor", new XElement("ID", x.Element("ID").Value), 
                 new XElement("Name", x.Element("Name").Value), 
                 new XElement("Value", x.Element("Value").Value), 
@@ -476,6 +472,12 @@ namespace SmartH2O_Alarm
             WindowState = FormWindowState.Normal;
             this.ShowInTaskbar = true;
             notifyIcon1.Visible = false;
+        }
+
+        private void SmartH20_Alarm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            client.Unsubscribe(m_strTopicsInfo);
+            client.Disconnect();
         }
     }
 
