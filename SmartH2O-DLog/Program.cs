@@ -54,7 +54,7 @@ namespace SmartH2O_DLog
             //ServiceLogLocal.ServiceLogClient service = new ServiceLogLocal.ServiceLogClient();
             ServiceLogWebService.ServiceLogClient service = new ServiceLogWebService.ServiceLogClient();
             Console.Write(service.SendValues(strTemp));
-            Console.Write(service.GetAllValues());
+            //Console.Write(service.GetAllValues());
 
             /*Console.Write("Received msg: ");
              Console.WriteLine(t.Element("Name").Value);
@@ -73,7 +73,7 @@ namespace SmartH2O_DLog
             //ServiceLogLocal.ServiceLogClient service = new ServiceLogLocal.ServiceLogClient();
             ServiceLogWebService.ServiceLogClient service = new ServiceLogWebService.ServiceLogClient();
             Console.Write(service.SendAlarm(strTemp));
-            Console.Write(service.GetAllAlmars());
+            //Console.Write(service.GetAllAlmars());
 
             /*Console.Write("Received msg: ");
             Console.WriteLine(t.Element("Name").Value);

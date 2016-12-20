@@ -47,7 +47,7 @@ namespace SmartH2O_DU
                 client.Publish("SensorValues", Encoding.UTF8.GetBytes(v));
             }
             
-            client.Disconnect();
+           // client.Disconnect();
         }
 
         public static double ConvertToUnixTimestamp(DateTime date)
