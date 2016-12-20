@@ -27,7 +27,6 @@ namespace SmartH2O_DLog
                 string[] m_strTopicsInfoAlarm = new string[1];
                 m_strTopicsInfoLog[0] = "SensorValues";
                 m_strTopicsInfoAlarm[0] = "Alarms";
-
                
                 byte[] qosLevels = { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE };
 
@@ -52,9 +51,10 @@ namespace SmartH2O_DLog
             //XElement t = XElement.Parse(strTemp);
             //Console.WriteLine(strTemp);
             //ServiceLog.ServiceLogClient service = new ServiceLog.ServiceLogClient();
-            ServiceLogLocal.ServiceLogClient service = new ServiceLogLocal.ServiceLogClient();
+            //ServiceLogLocal.ServiceLogClient service = new ServiceLogLocal.ServiceLogClient();
+            ServiceLogWebService.ServiceLogClient service = new ServiceLogWebService.ServiceLogClient();
             Console.Write(service.SendValues(strTemp));
-            //Console.Write(service.GetAllValues());
+            Console.Write(service.GetAllValues());
 
             /*Console.Write("Received msg: ");
              Console.WriteLine(t.Element("Name").Value);
@@ -70,7 +70,8 @@ namespace SmartH2O_DLog
             XElement t = XElement.Parse(strTemp);
 
             //ServiceLog.ServiceLogClient service = new ServiceLog.ServiceLogClient();
-            ServiceLogLocal.ServiceLogClient service = new ServiceLogLocal.ServiceLogClient();
+            //ServiceLogLocal.ServiceLogClient service = new ServiceLogLocal.ServiceLogClient();
+            ServiceLogWebService.ServiceLogClient service = new ServiceLogWebService.ServiceLogClient();
             Console.Write(service.SendAlarm(strTemp));
             Console.Write(service.GetAllAlmars());
 

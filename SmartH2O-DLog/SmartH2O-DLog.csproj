@@ -56,6 +56,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\ServiceLogWebService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\ServiceLog\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -66,6 +71,13 @@
     <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Service References\ServiceLogLocal\ServiceLog.wsdl" />
+    <None Include="Service References\ServiceLogWebService\ServiceLog.wsdl" />
+    <None Include="Service References\ServiceLogWebService\ServiceLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceLogWebService\ServiceLog1.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\ServiceLog\ServiceLog.wsdl" />
   </ItemGroup>
   <ItemGroup>
@@ -73,6 +85,7 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\ServiceLogLocal\" />
+    <WCFMetadataStorage Include="Service References\ServiceLogWebService\" />
     <WCFMetadataStorage Include="Service References\ServiceLog\" />
   </ItemGroup>
   <ItemGroup>
@@ -95,6 +108,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\ServiceLogLocal\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceLogWebService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceLogWebService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceLogWebService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
