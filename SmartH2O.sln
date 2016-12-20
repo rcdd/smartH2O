@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartH2O_DU", "SmartH2O_DU\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartH2O-DLog", "SmartH2O-DLog\SmartH2O-DLog.csproj", "{1E8B7013-F59E-4995-A96F-2C3B008E4DB7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartH2O_Service", "SmartH2O_Service\SmartH2O_Service.csproj", "{CF7C4F75-11D4-408D-A8B0-2B5A56708E7C}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{65F0F587-CDC0-45DD-8D04-81B6414DC4B6}"
 	ProjectSection(SolutionItems) = preProject
 		notas.txt = notas.txt
@@ -37,11 +35,6 @@ Global
 		{1E8B7013-F59E-4995-A96F-2C3B008E4DB7}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{1E8B7013-F59E-4995-A96F-2C3B008E4DB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E8B7013-F59E-4995-A96F-2C3B008E4DB7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CF7C4F75-11D4-408D-A8B0-2B5A56708E7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CF7C4F75-11D4-408D-A8B0-2B5A56708E7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CF7C4F75-11D4-408D-A8B0-2B5A56708E7C}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{CF7C4F75-11D4-408D-A8B0-2B5A56708E7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CF7C4F75-11D4-408D-A8B0-2B5A56708E7C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

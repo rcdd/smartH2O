@@ -128,6 +128,7 @@ namespace SmartH2O_Alarm
                 new XElement("Value", x.Element("Value").Value), 
                 new XElement("Time", x.Element("Time").Value), 
                 new XElement("Date", x.Element("Date").Value),
+                new XElement("TimeStamp", x.Element("TimeStamp").Value),
                 new XElement("Alarm", type));
 
             if (client.IsConnected)
