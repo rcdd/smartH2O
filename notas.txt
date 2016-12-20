@@ -4,4 +4,4 @@ client.Connect(Guid.NewGuid().ToString(), "isuser", "is2016");
 
 
 AppHarbor
-http://servicesmarth2o.apphb.com/ServiceLog.svc
+http://smarth2owebservice.apphb.com/ServiceLog.svc?wsdl
