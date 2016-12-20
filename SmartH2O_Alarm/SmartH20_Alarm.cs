@@ -26,6 +26,7 @@ namespace SmartH2O_Alarm
         string xmlPath = Path.GetDirectoryName(Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory())) + "\\App_Data\\trigger-rules.xml";
         string xsdPath = Path.GetDirectoryName(Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory())) + "\\App_Data\\trigger-rules.xsd";
         LinkedList<Sensor> sensorList = new LinkedList<Sensor>();
+        MqttClient client;
         static bool xmlValid = true;
         static string strXmlErrorReason;
 
@@ -37,7 +38,7 @@ namespace SmartH2O_Alarm
 
             
             //connect to mosquito
-            MqttClient client = new MqttClient("host.dynip.sapo.pt", 21, false, null, null, MqttSslProtocols.None);
+            client = new MqttClient("host.dynip.sapo.pt", 21, false, null, null, MqttSslProtocols.None);
             client.Connect(Guid.NewGuid().ToString(), "isuser", "is2016");
             if (client.IsConnected)
             {
@@ -71,7 +72,9 @@ namespace SmartH2O_Alarm
             
             if (!checkBoxBT.Checked) groupBox5.Enabled = false; else groupBox5.Enabled = true;
 
-    }
+        }
+
+
 
         private void readSensors(object sender, MqttMsgPublishEventArgs e)
         {
@@ -82,7 +85,7 @@ namespace SmartH2O_Alarm
 
             foreach (Sensor s in sensorList)
             {
-                if (s.name.Equals(sensorName))
+                if (s.name.Equals(sensorName) && s.status == 1)
                 {
                     try
                     {
@@ -117,8 +120,8 @@ namespace SmartH2O_Alarm
 
         private void publishAlarm(XElement x, String type)
         {
-            MqttClient client = new MqttClient("host.dynip.sapo.pt", 21, false, null, null, MqttSslProtocols.None);
-            client.Connect(Guid.NewGuid().ToString(), "isuser", "is2016");
+           // MqttClient client = new MqttClient("host.dynip.sapo.pt", 21, false, null, null, MqttSslProtocols.None);
+           // client.Connect(Guid.NewGuid().ToString(), "isuser", "is2016");
 
             XElement element = new XElement("Sensor", new XElement("ID", x.Element("ID").Value), 
                 new XElement("Name", x.Element("Name").Value), 
@@ -308,10 +311,11 @@ namespace SmartH2O_Alarm
                     throw new MinMaxRangeBT();
                 }
 
+                /*
                 if (float.Parse(textBoxValueGR.Text) < float.Parse(textBoxValueLS.Text))
                 {
                     throw new MinMaxRangeValues();
-                }
+                } */
 
                 return true;
 
@@ -443,6 +447,34 @@ namespace SmartH2O_Alarm
         private void checkBoxBT_CheckedChanged(object sender, EventArgs e)
         {
             if (!checkBoxBT.Checked) groupBox5.Enabled = false; else groupBox5.Enabled = true;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void frmMain_Resize(object sender, EventArgs e)
+        {
+            if (FormWindowState.Minimized == this.WindowState)
+            {
+                notifyIcon1.BalloonTipIcon = ToolTipIcon.Info;
+                notifyIcon1.BalloonTipTitle = "Smart H2O";
+                notifyIcon1.BalloonTipText = "The window is hidding. Click in the icon in your system tray to open again.";
+                notifyIcon1.Text = "Click here to maximize";
+                notifyIcon1.ShowBalloonTip(1000);
+                notifyIcon1.Visible = true;
+                this.Hide();
+            }
+        }
+
+        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            Show();
+            Activate();
+            WindowState = FormWindowState.Normal;
+            this.ShowInTaskbar = true;
+            notifyIcon1.Visible = false;
         }
     }
 
