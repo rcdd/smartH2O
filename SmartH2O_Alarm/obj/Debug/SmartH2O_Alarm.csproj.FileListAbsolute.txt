@@ -21,3 +21,13 @@ C:\Users\rpbeat\Desktop\EngenhariaInformatica_3ano\IS\smartH2O\SmartH2O_Alarm\ob
 D:\Dropbox\EI\3Ano\IS\SHARED_SI\smartH2O\SmartH2O_Alarm\bin\Debug\M2Mqtt.Net.dll
 D:\Dropbox\EI\3Ano\IS\SHARED_SI\smartH2O\SmartH2O_Alarm\bin\Debug\M2Mqtt.Net.pdb
 C:\Users\Emanuel Lopes\Source\Repos\smartH2O\SmartH2O_Alarm\bin\Debug\SmartH2O_Alarm.exe.config
+C:\Users\Emanuel Lopes\Source\Repos\smartH2O\SmartH2O_Alarm\bin\Debug\SmartH2O_Alarm.exe
+C:\Users\Emanuel Lopes\Source\Repos\smartH2O\SmartH2O_Alarm\bin\Debug\SmartH2O_Alarm.pdb
+C:\Users\Emanuel Lopes\Source\Repos\smartH2O\SmartH2O_Alarm\bin\Debug\M2Mqtt.Net.dll
+C:\Users\Emanuel Lopes\Source\Repos\smartH2O\SmartH2O_Alarm\bin\Debug\M2Mqtt.Net.pdb
+C:\Users\Emanuel Lopes\Source\Repos\smartH2O\SmartH2O_Alarm\obj\Debug\SmartH2O_Alarm.csprojResolveAssemblyReference.cache
+C:\Users\Emanuel Lopes\Source\Repos\smartH2O\SmartH2O_Alarm\obj\Debug\SmartH2O_Alarm.SmartH20_Alarm.resources
+C:\Users\Emanuel Lopes\Source\Repos\smartH2O\SmartH2O_Alarm\obj\Debug\SmartH2O_Alarm.Properties.Resources.resources
+C:\Users\Emanuel Lopes\Source\Repos\smartH2O\SmartH2O_Alarm\obj\Debug\SmartH2O_Alarm.csproj.GenerateResource.Cache
+C:\Users\Emanuel Lopes\Source\Repos\smartH2O\SmartH2O_Alarm\obj\Debug\SmartH2O_Alarm.exe
+C:\Users\Emanuel Lopes\Source\Repos\smartH2O\SmartH2O_Alarm\obj\Debug\SmartH2O_Alarm.pdb

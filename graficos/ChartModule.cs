@@ -11,7 +11,7 @@ using System.Xml;
 
 namespace graficos
 {
-    class ChartModuleInfo
+    class ChartModule
     {
         public class DateModel
         {
@@ -26,9 +26,9 @@ namespace graficos
                 .X(dayModel => (double)dayModel.DateTime.Ticks / TimeSpan.FromHours(1).Ticks)
                 .Y(dayModel => dayModel.Value);
 
-            int i = 0;
             foreach (XmlNode node in nodeList)
             {
+                Console.WriteLine("Test"+ node["TimeStamp"].InnerText);
                 DateModel dateModel = new DateModel();
                 dateModel.DateTime = UnixTimeStampToDateTime(long.Parse(node["TimeStamp"].InnerText));
                 dateModel.Value = double.Parse(node["Value"].InnerText, System.Globalization.CultureInfo.InvariantCulture);
@@ -77,6 +77,18 @@ namespace graficos
             System.DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
             dtDateTime = dtDateTime.AddSeconds(unixTimeStamp);
             return dtDateTime;
+        }
+
+        public string ConvertToUnixTimestamp(string date, bool maxDate)
+        {
+            DateTime myDate = Convert.ToDateTime(date);
+            if (maxDate)
+            {
+                myDate = myDate.Date.AddHours(23).AddMinutes(59).AddSeconds(59);
+            }
+            DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+            TimeSpan diff = myDate.ToUniversalTime() - origin;
+            return Math.Floor(diff.TotalSeconds).ToString();
         }
 
         public void populateInfo(XmlNodeList values, Label labelMin, Label labelMax, Label labelAverage)
