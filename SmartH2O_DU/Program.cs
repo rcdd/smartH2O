@@ -23,25 +23,15 @@ namespace SmartH2O_DU
             if (message != null)
             {
                 string[] words = message.Split(';');
-                string ID="";
-                string Value="";
-                string Desc="";
-                int i=0;
-                foreach (string word in words)
-                {
-                    if (i == 0)
-                    {
-                        ID = word;
-                    }else if(i == 1)
-                    {
-                        Desc = word;
-                    }else
-                    {
-                        Value = word;
-                    }
-                    i++;
-                }
-                XElement element = new XElement("Sensor", new XElement("ID", ID), new XElement("Name", Desc), new XElement("Value", Value), new XElement("Time", DateTime.Now.ToString("HH:mm:ss")), new XElement("Date", DateTime.Now.ToString("dd/MM/yyyy")));
+                DateTime now = DateTime.Now;
+                XElement element = new XElement("Sensor", 
+                    new XElement("ID", words[0]), 
+                    new XElement("Name", words[1]), 
+                    new XElement("Value", words[2]), 
+                    new XElement("Time", now.ToString("HH:mm:ss")), 
+                    new XElement("Date", now.ToString("dd/MM/yyyy")), 
+                    new XElement("TimeStamp", ConvertToUnixTimestamp(now)));
+
                 Console.WriteLine(element);
                 publish(element.ToString());
             }
@@ -56,6 +46,20 @@ namespace SmartH2O_DU
                 //Console.WriteLine(v);
                 client.Publish("SensorValues", Encoding.UTF8.GetBytes(v));
             }
+        }
+
+        public static double ConvertToUnixTimestamp(DateTime date)
+        {
+            DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+            TimeSpan diff = date.ToUniversalTime() - origin;
+            return Math.Floor(diff.TotalSeconds);
+        }
+
+        //To Inverse Timestamp
+        public static DateTime ConvertFromUnixTimestamp(double timestamp)
+        {
+            DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+            return origin.AddSeconds(timestamp);
         }
     }
 }
